@@ -73,6 +73,7 @@ def list_files():
         files = [
             {"key": obj["Key"].replace(f"{current_user}/", ""), "size": obj["Size"]}
             for obj in contents
+            if obj["Key"].startswith(f"{current_user}/")
         ]
         return jsonify({"files": files})
     except ClientError as e:
